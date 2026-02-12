@@ -10,7 +10,7 @@ program define assertapprox
 	
 	// Validation
 	if "`eq'"!="==" {
-		di as error "expression mus tbe of the form <lhs> == <rhs>"
+		di as error "expression must be of the form <lhs> == <rhs>"
 		exit 198
 	}
 	
