@@ -1,8 +1,7 @@
 cap prog drop assertapprox
 program define assertapprox
-
 	// Parse expression and tolerance
-	syntax anything(equalok name=expr), TOL(real)
+	syntax anything(equalok name=expr), TOL(real) [if]
 	
 	// Split expression on "="
 	gettoken lhs rest : expr, parse("==")
@@ -15,7 +14,7 @@ program define assertapprox
 	}
 	
 	assert ///
-		(`rhs' !=0 & (abs(`lhs' - `rhs') / `rhs') <= `tol') | ///
-		(`rhs' == 0 & (abs(`lhs')<=`tol'))
+		((`rhs' !=0 & (abs(`lhs' - `rhs') / `rhs') <= `tol') | ///
+		(`rhs' == 0 & (abs(`lhs')<=`tol'))) `if'
 	
 end
